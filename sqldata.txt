@@ -1,0 +1,217 @@
+USE [version1_1]
+GO
+ 
+/****** Object:  Table [dbo].[Users]    Script Date: 02/08/2024 12:43:03 ******/
+SET ANSI_NULLS ON
+GO
+ 
+SET QUOTED_IDENTIFIER ON
+GO
+ 
+CREATE TABLE [dbo].[Users](
+	[user_id] [int] IDENTITY(1,1) NOT NULL,
+	[username] [nvarchar](50) NOT NULL,
+	[password] [nvarchar](50) NOT NULL,
+	[role] [nvarchar](50) NOT NULL,
+	[email] [nvarchar](50) NOT NULL,
+	[phone] [nvarchar](20) NULL,
+	[approved] [bit] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[user_id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY],
+UNIQUE NONCLUSTERED 
+(
+	[email] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY],
+UNIQUE NONCLUSTERED 
+(
+	[username] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+ 
+ALTER TABLE [dbo].[Users] ADD  DEFAULT ((0)) FOR [approved]
+GO
+ 
+ ---------------------------------------------------------
+
+USE [version1_1]
+GO
+ 
+/****** Object:  Table [dbo].[ProjectDetails]    Script Date: 02/08/2024 12:54:06 ******/
+SET ANSI_NULLS ON
+GO
+ 
+SET QUOTED_IDENTIFIER ON
+GO
+ 
+CREATE TABLE [dbo].[ProjectDetails](
+	[detail_id] [int] IDENTITY(1,1) NOT NULL,
+	[project_id] [int] NULL,
+	[ph] [nvarchar](50) NOT NULL,
+	[article] [nvarchar](50) NOT NULL,
+	[at] [float] NOT NULL,
+	[planche] [int] NOT NULL,
+	[priorite] [int] NOT NULL,
+	[duree_de_coupe] [float] NULL,
+	[nombre_operateurs] [float] NULL,
+	[duree] [float] NULL,
+	[ordre_F] [varchar](255) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[detail_id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+ 
+ALTER TABLE [dbo].[ProjectDetails]  WITH CHECK ADD FOREIGN KEY([project_id])
+REFERENCES [dbo].[Projects] ([project_id])
+GO
+ 
+-------------------------------------------------------------------
+
+USE [version1_1]
+GO
+ 
+/****** Object:  Table [dbo].[Projects]    Script Date: 02/08/2024 12:54:57 ******/
+SET ANSI_NULLS ON
+GO
+ 
+SET QUOTED_IDENTIFIER ON
+GO
+ 
+CREATE TABLE [dbo].[Projects](
+	[project_id] [int] IDENTITY(1,1) NOT NULL,
+	[project_name] [nvarchar](100) NOT NULL,
+	[pme_manager] [nvarchar](50) NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[project_id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+ 
+-----------------------------------------------------------------------------------
+
+
+USE [version1_1]
+GO
+ 
+/****** Object:  Table [dbo].[ProjectLines]    Script Date: 02/08/2024 12:56:07 ******/
+SET ANSI_NULLS ON
+GO
+ 
+SET QUOTED_IDENTIFIER ON
+GO
+ 
+CREATE TABLE [dbo].[ProjectLines](
+	[ligne_id] [int] IDENTITY(1,1) NOT NULL,
+	[project_id] [int] NULL,
+	[line_number] [int] NOT NULL,
+	[line_length] [float] NOT NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[ligne_id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+ 
+ALTER TABLE [dbo].[ProjectLines]  WITH CHECK ADD FOREIGN KEY([project_id])
+REFERENCES [dbo].[Projects] ([project_id])
+GO
+ 
+
+---------------------------------------------------------------------------------------
+
+
+USE [version1_1]
+GO
+ 
+/****** Object:  Table [dbo].[ProjectStatus]    Script Date: 02/08/2024 12:56:32 ******/
+SET ANSI_NULLS ON
+GO
+ 
+SET QUOTED_IDENTIFIER ON
+GO
+ 
+CREATE TABLE [dbo].[ProjectStatus](
+	[project_id] [int] NOT NULL,
+	[debut_planning] [date] NULL,
+	[nombre_jours] [int] NULL,
+	[nbr_rame] [int] NULL,
+	[efficience] [float] NULL,
+	[nbr_shift] [int] NULL,
+	[updated_by] [nvarchar](50) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[project_id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+ 
+ALTER TABLE [dbo].[ProjectStatus]  WITH CHECK ADD FOREIGN KEY([updated_by])
+REFERENCES [dbo].[Users] ([username])
+GO
+ 
+----------------------------------------------------------------------------------------
+
+USE [version1_1]
+GO
+ 
+/****** Object:  Table [dbo].[Gantt]    Script Date: 02/08/2024 12:56:46 ******/
+SET ANSI_NULLS ON
+GO
+ 
+SET QUOTED_IDENTIFIER ON
+GO
+ 
+CREATE TABLE [dbo].[Gantt](
+	[gantt_id] [int] IDENTITY(1,1) NOT NULL,
+	[project_id] [int] NULL,
+	[ph] [nvarchar](255) NULL,
+	[planche] [float] NULL,
+	[duree] [float] NULL,
+	[nbr_operateurs] [float] NULL,
+	[priorite] [int] NULL,
+	[ligne_id] [int] NULL,
+	[face] [int] NULL,
+	[apres_une_periode] [float] NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[gantt_id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+ 
+ 
+-----------------------------------------------------------------------------------------
+
+
+USE [version1_1]
+GO
+ 
+/****** Object:  Table [dbo].[ProjectProgress]    Script Date: 02/08/2024 12:56:55 ******/
+SET ANSI_NULLS ON
+GO
+ 
+SET QUOTED_IDENTIFIER ON
+GO
+ 
+CREATE TABLE [dbo].[ProjectProgress](
+	[progress_id] [int] IDENTITY(1,1) NOT NULL,
+	[project_id] [int] NULL,
+	[ph] [varchar](50) NULL,
+	[progress] [decimal](5, 2) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[progress_id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+ 
+ALTER TABLE [dbo].[ProjectProgress]  WITH CHECK ADD FOREIGN KEY([project_id])
+REFERENCES [dbo].[Projects] ([project_id])
+GO
+ 
+
