@@ -3,88 +3,214 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Company Name</title>
+    <title>Alstom Project Management System</title>
     <link rel="stylesheet" href="styles.css"> <!-- Link to your CSS file -->
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-        }
-        header {
-            background-color: #4CAF50;
-            color: white;
-            padding: 15px 0;
-            text-align: center;
-        }
-        nav {
-            margin: 15px 0;
-        }
-        nav a {
-            margin: 0 15px;
-            color: white;
-            text-decoration: none;
-        }
-        section {
-            padding: 20px;
-            margin: 20px;
-        }
-        footer {
-            text-align: center;
-            padding: 15px 0;
-            background-color: #4CAF50;
-            color: white;
-            position: relative;
-            bottom: 0;
-            width: 100%;
-        }
-    </style>
 </head>
 <body>
+    <header>
+        <h1>Alstom Project Management System</h1>
+        <nav>
+            <a href="#users">Users</a>
+            <a href="#projects">Projects</a>
+            <a href="#project-details">Project Details</a>
+            <a href="#project-status">Project Status</a>
+            <a href="#gantt">Gantt Chart</a>
+            <a href="#progress">Project Progress</a>
+        </nav>
+    </header>
 
-<header>
-    <h1>Your Company Name</h1>
-    <nav>
-        <a href="#about">About Us</a>
-        <a href="#services">Services</a>
-        <a href="#testimonials">Testimonials</a>
-        <a href="#contact">Contact</a>
-    </nav>
-</header>
+    <section id="users">
+        <h2>Users</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>UserID</th>
+                    <th>Username</th>
+                    <th>Role</th>
+                    <th>Email</th>
+                    <th>Phone</th>
+                    <th>Approved</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Sample Data -->
+                <tr>
+                    <td>1</td>
+                    <td>john_doe</td>
+                    <td>Admin</td>
+                    <td>john@example.com</td>
+                    <td>(123) 456-7890</td>
+                    <td>Yes</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>jane_smith</td>
+                    <td>Manager</td>
+                    <td>jane@example.com</td>
+                    <td>(987) 654-3210</td>
+                    <td>No</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
 
-<section id="about">
-    <h2>About Us</h2>
-    <p>Welcome to Your Company! We are committed to providing top-notch services to our clients.</p>
-</section>
+    <section id="projects">
+        <h2>Projects</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ProjectID</th>
+                    <th>Project Name</th>
+                    <th>PME Manager</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Sample Data -->
+                <tr>
+                    <td>1</td>
+                    <td>Project Alpha</td>
+                    <td>Jane Smith</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Project Beta</td>
+                    <td>John Doe</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
 
-<section id="services">
-    <h2>Our Services</h2>
-    <ul>
-        <li>Service 1: Description of service 1</li>
-        <li>Service 2: Description of service 2</li>
-        <li>Service 3: Description of service 3</li>
-    </ul>
-</section>
+    <section id="project-details">
+        <h2>Project Details</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>DetailID</th>
+                    <th>ProjectID</th>
+                    <th>Article</th>
+                    <th>Priority</th>
+                    <th>Duration</th>
+                    <th>Operators</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Sample Data -->
+                <tr>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>Design Phase</td>
+                    <td>1</td>
+                    <td>30</td>
+                    <td>5</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>Development Phase</td>
+                    <td>2</td>
+                    <td>60</td>
+                    <td>8</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
 
-<section id="testimonials">
-    <h2>Testimonials</h2>
-    <blockquote>
-        <p>"Your Company has transformed our business!" - Happy Client</p>
-    </blockquote>
-    <blockquote>
-        <p>"Exceptional service and support!" - Satisfied Customer</p>
-    </blockquote>
-</section>
+    <section id="project-status">
+        <h2>Project Status</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>StatusID</th>
+                    <th>ProjectID</th>
+                    <th>Start Date</th>
+                    <th>Days Count</th>
+                    <th>Status</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Sample Data -->
+                <tr>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>2024-01-01</td>
+                    <td>30</td>
+                    <td>In Progress</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>2024-02-01</td>
+                    <td>45</td>
+                    <td>Completed</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
 
-<section id="contact">
-    <h2>Contact Us</h2>
-    <p>Email: info@yourcompany.com</p>
-    <p>Phone: (123) 456-7890</p>
-</section>
+    <section id="gantt">
+        <h2>Gantt Chart</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>GanttID</th>
+                    <th>ProjectID</th>
+                    <th>Board</th>
+                    <th>Duration</th>
+                    <th>Priority</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Sample Data -->
+                <tr>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>Phase 1</td>
+                    <td>15</td>
+                    <td>1</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>Phase 2</td>
+                    <td>20</td>
+                    <td>2</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
 
-<footer>
-    <p>&copy; 2024 Your Company Name. All Rights Reserved.</p>
-</footer>
+    <section id="progress">
+        <h2>Project Progress</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th>ProgressID</th>
+                    <th>ProjectID</th>
+                    <th>Phase</th>
+                    <th>Progress</th>
+                </tr>
+            </thead>
+            <tbody>
+                <!-- Sample Data -->
+                <tr>
+                    <td>1</td>
+                    <td>1</td>
+                    <td>Phase 1</td>
+                    <td>50%</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>2</td>
+                    <td>Phase 2</td>
+                    <td>80%</td>
+                </tr>
+            </tbody>
+        </table>
+    </section>
 
+    <footer>
+        <p>&copy; 2024 Alstom Project Management System. All Rights Reserved.</p>
+    </footer>
 </body>
 </html>
+
