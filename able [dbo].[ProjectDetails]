@@ -1,0 +1,28 @@
+SET ANSI_NULLS ON
+GO
+ 
+SET QUOTED_IDENTIFIER ON
+GO
+ 
+CREATE TABLE [dbo].[ProjectDetails](
+	[detail_id] [int] IDENTITY(1,1) NOT NULL,
+	[project_id] [int] NULL,
+	[ph] [nvarchar](50) NOT NULL,
+	[article] [nvarchar](50) NOT NULL,
+	[at] [float] NOT NULL,
+	[planche] [int] NOT NULL,
+	[priorite] [int] NOT NULL,
+	[duree_de_coupe] [float] NULL,
+	[nombre_operateurs] [float] NULL,
+	[duree] [float] NULL,
+	[ordre_F] [varchar](255) NULL,
+PRIMARY KEY CLUSTERED 
+(
+	[detail_id] ASC
+)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON, OPTIMIZE_FOR_SEQUENTIAL_KEY = OFF) ON [PRIMARY]
+) ON [PRIMARY]
+GO
+ 
+ALTER TABLE [dbo].[ProjectDetails]  WITH CHECK ADD FOREIGN KEY([project_id])
+REFERENCES [dbo].[Projects] ([project_id])
+GO
